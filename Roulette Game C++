@@ -1,0 +1,122 @@
+#include <iostream>
+#include <cstdlib>
+#include <time.h>
+#include <chrono>
+#include <thread>
+#include <string>
+#include <stdlib.h>
+using namespace std;
+
+int main() 
+{
+	char ch;
+	int cash = 1000;
+	int bet, winnum, type;
+	string cont, again;
+        
+        string bets[] = {"Even", "Odd", "Black", "Red", "1-18", "19-36"};
+	
+	cout << "Press ENTER to Start";
+	cin.get(ch);
+	do {
+	
+		do {
+			cout << "You have $" << cash << endl;
+			cout << "How much will you bet? ";
+			cin >> bet;
+		}
+		while (bet > cash || bet < 0);
+		
+		do {
+		cout << "Choose (with numbers) one of the following:\n" << "1.Even, 2.Odd, 3.Black, 4.Red, 5.1-18, 6.19-36. ";
+		cin >> type;
+
+		cout << "Your bet is " << bets[type - 1] << " for $" << bet << endl;
+		cout << "Continue? ";
+		cin >> cont;
+		}
+		while (cont == "no" || cont == "No" || cont == "n" || cont == "N");
+		
+		
+	
+	
+	
+		srand(time(0));
+	
+		winnum = rand() % (37);
+  
+		cout << "The winning number is " << winnum << "!\n";
+	
+		if (type == 1){
+			if (winnum % 2 == 0){
+				cash = cash + bet;
+				cout << "YOU WIN!\n" << "You now have $" << cash;
+			}
+			else{
+				cash = cash - bet;
+				cout << "Sorry, you lose\n" << "You now have $" << cash;
+			}
+		}
+	
+		if (type == 2){
+			if (winnum % 2 != 0){
+				cash = cash + bet;
+				cout << "YOU WIN!\n" << "You now have $" << cash;
+			}
+			else{
+				cash = cash - bet;
+				cout << "Sorry, you lose\n" << "You now have $" << cash;
+			}
+		}
+	
+		if (type == 3){
+			if (winnum == 2 || winnum == 4 || winnum == 6 || winnum == 8 || winnum == 10 || winnum == 11 || winnum == 13 || winnum == 15 || winnum == 17 || winnum == 20 || winnum == 22 || winnum == 24 || winnum == 26 || winnum == 28 || winnum == 29 || winnum == 31 || winnum == 33){
+				cash = cash + bet;
+				cout << "YOU WIN!\n" << "You now have $" << cash;
+			}
+			else{
+				cash = cash - bet;
+				cout << "Sorry, you lose\n" << "You now have $" << cash;
+			}
+		}
+	
+		if (type == 4){
+			if (winnum == 2 || winnum == 4 || winnum == 6 || winnum == 8 || winnum == 10 || winnum == 11 || winnum == 13 || winnum == 15 || winnum == 17 || winnum == 20 || winnum == 22 || winnum == 24 || winnum == 26 || winnum == 28 || winnum == 29 || winnum == 31 || winnum == 33 || winnum == 0){
+				cash = cash - bet;
+				cout << "Sorry, you lose\n" << "You now have $" << cash;
+			}
+			else{
+				cash = cash + bet;
+				cout << "YOU WIN!\n" << "You now have $" << cash;
+			}
+		}
+	
+		if (type == 5){
+			if (winnum < 19){
+				cash = cash + bet;
+				cout << "YOU WIN!\n" << "You now have $" << cash;
+			}
+			else{
+				cash = cash - bet;
+				cout << "Sorry, you lose\n" << "You now have $" << cash;
+			}
+		}
+                
+                if (type == 6){
+			if (winnum > 18){
+				cash = cash + bet;
+				cout << "YOU WIN!\n" << "You now have $" << cash;
+			}
+			else{
+				cash = cash - bet;
+				cout << "Sorry, you lose.\n" << "You now have $" << cash;
+			}
+		}
+                
+		cout << "\nDo you want to play again? ";
+		cin >> again;
+	}	
+	while (again != "no" && again != "n" && again != "No" && again != "N");
+	
+	return 0;
+}
